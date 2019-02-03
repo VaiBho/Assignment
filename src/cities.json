@@ -1,0 +1,11 @@
+[
+    { "city": "Ahmedabad", "city_code": "AHD" },
+    { "city": "Bangalore", "city_code": "BLR" },
+    { "city": "Chandigarh", "city_code": "CHD" },
+    { "city": "Chennai", "city_code": "CHN" },
+    { "city": "Delhi", "city_code": "DEL" },
+    { "city": "Hyderabad", "city_code": "HYD" },
+    { "city": "Kolkata", "city_code": "Kol" },
+    { "city": "Mumbai", "city_code": "Mum" },
+    { "city": "Pune", "city_code": "PNQ" }
+]
