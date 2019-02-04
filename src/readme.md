@@ -12,6 +12,3 @@ CONSIDERING THIS ASSIGNMENT AS PART OF LARGE APPLICATION
 
         can be useful for same UI on multiple browsers
         also flight time selection will be posssible
-
-
-

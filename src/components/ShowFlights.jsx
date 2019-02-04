@@ -30,12 +30,17 @@ const ShowFlights = ({ flights, sortOrder, searchPerformed }) => {
             )}
 
             {/* SEARCH RESULT CONTAINER */}
-            {sortedFlights.length > 0 && (
+            {searchPerformed && sortedFlights.length > 0 && (
                 <div style={{ height: "65vh", overflow: "auto" }}>
                     {sortedFlights.map((flight, index) => (
                         <FlightDetails key={index} details={flight} />
                     ))}
                 </div>
+            )}
+
+            {/* NO SEARCH RESULT MESSAGE */}
+            {searchPerformed && !sortedFlights.length && (
+                <NoFlightMessage />
             )}
         </div>
     );
@@ -55,3 +60,9 @@ ShowFlights.propTypes = {
 };
 
 export default connect(mapStateToProps)(ShowFlights);
+
+const NoFlightMessage = () => (
+    <div className="alert alert-danger" style={{ marginTop: 100 }}>
+        <Icon icon="fa-exclamation-circle" /> No Flights available
+    </div>
+);

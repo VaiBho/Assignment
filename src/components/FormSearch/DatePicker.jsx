@@ -1,6 +1,7 @@
 import React from "react";
 import Asterisk from "../Common/Asterisk";
 import PropTypes from 'prop-types';
+import Icon from '../Common/Icons';
 
 const DatePicker = ({
     htmlId,
@@ -15,6 +16,12 @@ const DatePicker = ({
             {label}
             {isRequired && Asterisk}
         </label>
+        <div className="input-group flex-nowrap">
+            <div className="input-group-prepend">
+                <span className="input-group-text">
+                    <Icon icon="fa-calendar-alt" />
+                </span>
+            </div>
         <input
             type="date"
             value={value}
@@ -23,6 +30,7 @@ const DatePicker = ({
             placeholder={placeholder}
             required
         />
+        </div>
     </div>
 );
 

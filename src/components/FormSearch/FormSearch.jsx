@@ -1,11 +1,12 @@
 import React from "react";
 import CustomInput from "./CustomInput";
 import DatePicker from "./DatePicker";
-import styled from 'styled-components';
-import ElementWrapper from '../Common/ElementWrapper';
-import validator from './_ValidationHelper';
-import cities from '../../cities.json';
+import styled from "styled-components";
+import ElementWrapper from "../Common/ElementWrapper";
+import validator from "./_ValidationHelper";
+import cities from "../../cities.json";
 import _SearchFlight from "./_SearchFlight";
+import Icon from '../Common/Icons';
 
 const Form = styled.form`
     border: 1px solid #ccc;
@@ -16,12 +17,12 @@ const Form = styled.form`
 class SearchForm extends React.Component {
     //PROPS ARE NOT REQUIRED, NO NEED OF CONSTRUCTOR
     state = {
-        originCity: '',
-        destinationCity: '',
-        departureDate: '',
-        returnDate: '',
+        originCity: "",
+        destinationCity: "",
+        departureDate: "",
+        returnDate: "",
         passengers: 1,
-        validationError: ' '
+        validationError: " "
     };
 
     handleChange = name => event => {
@@ -31,13 +32,12 @@ class SearchForm extends React.Component {
     };
 
     submitForm = e => {
-        
         e.preventDefault();
 
         //EXECUTE VALIDATOR & GET ERROR MESSAGE IF ANY
         const formError = validator(this.state);
-        
-        if(formError){
+
+        if (formError) {
             //IF ERROR, SHOW IN THE FORM
             this.setState({
                 validationError: "Required: " + formError
@@ -48,19 +48,29 @@ class SearchForm extends React.Component {
         } else {
             //IF FORM IS VALID, REMOVE PREVIOUSLY SHOWN MESSAGE
             this.setState({
-                validationError: ''
-            })
+                validationError: ""
+            });
         }
-        
+
         const params = {
             origin: this.state.originCity,
-            destination: this.state.destinationCity,
-        }
+            destination: this.state.destinationCity
+        };
 
         //SEARCH FLIGHTS
         _SearchFlight.SearchFlights(params);
-        
-    }
+    };
+
+    resetForm = () => {
+        this.setState({
+            originCity: "",
+            destinationCity: "",
+            departureDate: "",
+            returnDate: "",
+            passengers: 1,
+            validationError: " "
+        });
+    };
 
     render() {
         const {
@@ -131,6 +141,12 @@ class SearchForm extends React.Component {
                     <ElementWrapper>
                         <div className="form-group">
                             <label htmlFor="passengers">Total passangers</label>
+                            <div className="input-group flex-nowrap">
+            <div className="input-group-prepend">
+                <span className="input-group-text">
+                    <Icon icon="fa-users" />
+                </span>
+            </div>
                             <input
                                 id="passengers"
                                 className="form-control"
@@ -141,15 +157,19 @@ class SearchForm extends React.Component {
                                 value={passengers}
                                 onChange={this.handleChange("passengers")}
                             />
+                            
+                        </div>
                         </div>
                     </ElementWrapper>
                     <ElementWrapper>
-                        <p style={{margin:5,fontSize: 14, color: '#f00'}}>{validationError} &nbsp;</p>
-                        <button
-                            type="submit"
-                            className="btn btn-primary"
-                        >
-                            Search
+                        <p style={{ margin: 5, fontSize: 14, color: "#f00" }}>
+                            {validationError} &nbsp;
+                        </p>
+                        <button type="submit" className="btn btn-primary">
+                          <Icon icon="fa-search" />  Search
+                        </button>
+                        <button type="button" className="btn btn-light" onClick={this.resetForm}>
+                            Reset
                         </button>
                     </ElementWrapper>
                 </div>
